@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>APPLICATION FORM</title>
+</head>
+<body style= "background-color:powderblue;">
+<h3>APPLY HERE</h3>
+ <form  method="post" action="{% url 'ebankingapp:regform' %}">
+     {% csrf_token %}
+     {{ form.as_p }}
+    <button type="submit">Submit</button><br><br>
+     <button><a href="{% url 'ebankingapp:allBranches' %}">Return to homepage</a></button><br><br>
+
+
+
+   <button><a href="{% url 'ebankingapp:logout' %}">Logout</a></button>
+
+
+</form>
+{%  for msg in messages %}
+{{msg}}
+{% endfor %}
+</body>
+</html>
+
+
+
+
+

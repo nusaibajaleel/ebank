@@ -1,0 +1,16 @@
+
+{% load static %}
+{% block metadescription %}
+  {% if district %}
+    {{ district.description|truncatewords:155 }}
+  {% else %}
+      Welcome to eBank-INVES,where you are the safest!
+  {% endif %}
+{% endblock %}
+{% block title %}
+   {% if district %}
+       {{ district.name}} -ebankINVES
+   {% else %}
+        Welcome to eBankINVES
+   {% endif %}
+{% endblock %}

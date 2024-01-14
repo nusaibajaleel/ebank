@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if district %}
+    {{ district.description|truncatewords:155 }}
+  {% else %}
+      Welcome to eBank-INVES,where you are the safest!
+  {% endif %}
+{% endblock %}
+{% block title %}
+   {% if district %}
+       {{ district.name}} -ebankINVES
+   {% else %}
+        Welcome to eBankINVES
+   {% endif %}
+{% endblock %}
+{% block content %}
+   {% if district %}
+   <div>
+       <div class="row my_row_class">
+           <div class="mx-auto">
+           <p><a href="{% url 'ebankingapp:allBranches' %}">All Branches</a></p>
+           </div>
+       </div>
+   </div>
+   {% endif %}
+<div class="mx-auto">
+    {% if district %}
+       <img class="my_image" src="{{district.image.url}}" alt="{{district.name}}" height="600px;" width="1400px;">
+</div>
+   <br>
+<div>
+       <h4 class="text-center my_title">{{district.name}}</h4>
+       <p class="text-justify">{{district.description}}</p>
+</div>
+    {% else %}
+<div>
+<img class="my_image my_image_padding" src="{% static 'img/bankbg.jpg' %}" alt="Our branches" height="600px;" width="1400px;">
+</div>
+<br>
+  <h1 class="text-center my_title">OUR BRANCHES</h1>
+  <p class="text-justify" >Maximize your gains and limit losses with an in-depth 360 degree view powered by real time account and payment insights.Integrated end to end Cash management with market ready user journeys across domains and countries
+
+Get the ANYTIME ANYWHERE mobile banking experience for your customers. Designed specifically for SMEs to speed-up banking interactions and transact at scale.Adopt Open Banking and rapidly expand APIs to enable painless integration for corporates into banking ecosystem and access new business services effortlessly.Make more money and retain/acquire more customers with improved operational efficiency.</p>
+    {% endif %}
+<div class="container">
+    <div class="row mx_auto">
+        {% for branch in branches %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width:18rem">
+                <a href="{{branch.get_url}}"> <img class="card-img-top my_image" src="{{branch.image.url}}" alt="{{branch.name}}" height="350px;" width="350px;"></a>
+                <div class="card-body">
+                    <h3>{{branch.name}}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

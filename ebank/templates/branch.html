@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+    {{ branch.description|truncatewords:155 }}
+
+      Welcome to eBank-INVEST,where you are the safest!
+
+{% endblock %}
+{% block title %}
+   {% if district %}
+       {{ branch.name}} -ebankINVEST
+   {% endif %}
+{% endblock %}
+{% block content %}
+<div class="row my_prod_row_class">
+    <div class="mx-auto">
+        <p><a href="{% url 'ebankingapp:allBranches' %}">Home</a>|<a href="{{branch.district.get_url}}">{{branch.district}}</a>|{{branch.name}}</p>
+    </div>
+</div>
+<div class="container">
+<br>
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+        <div style="min-width:18rem">
+            <img src="{{branch.image.url}}"  alt="{{branch.name}}" height="500px;" width="500px;">
+        </div>
+    </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div>
+            <h1 class="my_prod_title">{{branch.name}}</h1>
+            <p class="my_title">ebank-INVEST</p>
+            <p class="text-justify my_prod_text">{{branch.description}}</p>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
